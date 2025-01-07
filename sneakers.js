@@ -10,11 +10,11 @@ const products = [
       colors: [
          {
             code: "black",
-            img: "Screenshot (81).png",
+            img: "https://assets.myntassets.com/w_412,q_60,dpr_2,fl_progressive/assets/images/26023488/2023/11/24/44f447cb-8725-458d-9295-2787e5dc581f1700822412194NikeMenAirJordenAquaBasketballShoes1.jpg",
          },
          {
             code: "white",
-            img: "Screenshot (82).png",
+            img: "https://assets.myntassets.com/w_412,q_60,dpr_2,fl_progressive/assets/images/28282962/2024/3/15/0efd442f-bbd7-4a8c-8546-ce119b7b0b0b1710447831920JordanStayLoyal3MensShoes1.jpg",
          },
       ],
    },
@@ -25,11 +25,11 @@ const products = [
       colors: [
          {
             code: "black",
-            img: "black air force.png",
+            img: "https://www.superkicks.in/cdn/shop/files/2_b94d13b2-f25c-4475-8ca0-09763da5fa8f.jpg?v=1720607949&width=533",
          },
          {
             code: "white",
-            img: "Screenshot (83).png",
+            img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRn4pkq7yXk8N-TLL7JzAJSo-mHxbefwGPOfw&s",
          },
       ],
    },
@@ -40,11 +40,11 @@ const products = [
       colors: [
          {
             code: "black",
-            img: "black air force.png",
+            img: "https://assets.myntassets.com/dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/27063082/2024/1/26/598c4eec-bfd3-4e73-94c3-b13deb47c3411706276047867NikeDownshifter13MenRoadRunningShoes1.jpg",
          },
          {
-            code: "darkblue",
-            img: "Screenshot (83).png",
+            code: "white",
+            img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTi7L6uYUJhp9Wksvt_Tl6yz_-UMz_d3JhmwQ&s",
          },
       ],
    },
@@ -55,11 +55,11 @@ const products = [
       colors: [
          {
             code: "black",
-            img:"black air force.png",
+            img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpBnAqMP5j3srDKoYfXGaRvaoN6OkNcWxCYA&s",
          },
          {
-            code: "darkblue",
-            img: "Screenshot (83).png",
+            code: "white",
+            img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSA5pIWeGDtTQ_16-nv-DjdIbe5T6LzTCn6Tw&s",
          },
       ],
    },
@@ -70,11 +70,11 @@ const products = [
       colors: [
          {
             code: "black",
-            img: "black air force.png",
+            img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQR6d2ZP_cVUKUag4FN5_u4615xms_M3H0AWw&s",
          },
          {
-            code: "darkblue",
-            img: "Screenshot (83).png",
+            code: "white",
+            img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiLJ8kn4FwuGMcAcz5STndwFaF0l5kNxk1HQ&s",
          },
       ],
    },
@@ -90,11 +90,22 @@ const currentProductSizes = document.querySelectorAll(".size");
 // Function to update product colors
 const updateColors = () => {
    currentProductColors.forEach((colorElement, index) => {
-      colorElement.style.backgroundColor = chosenProduct.colors[index].code;
-      // Update image when clicking on a color
-      colorElement.addEventListener("click", () => {
-         currentProductImg.src = chosenProduct.colors[index].img;
-      });
+      if (index < chosenProduct.colors.length) {
+         colorElement.style.backgroundColor = chosenProduct.colors[index].code;
+         colorElement.style.display = "block"; // Ensure the color is visible
+
+         // Remove any previous event listeners before adding a new one
+         const newColorClickHandler = () => {
+            currentProductImg.src = chosenProduct.colors[index].img;
+         };
+
+         // Remove existing event listeners (if any) before adding a new one
+         colorElement.replaceWith(colorElement.cloneNode(true));
+         const clonedElement = document.querySelectorAll(".color")[index];
+         clonedElement.addEventListener("click", newColorClickHandler);
+      } else {
+         colorElement.style.display = "none"; // Hide if no corresponding color exists
+      }
    });
 };
 

@@ -58,7 +58,7 @@ nav {
 .navbottom {
     display: flex;
     justify-content: center;
-    background: url('wood-3340125_1280.jpg');
+    background-color: rgb(99,62,25);
 }
 
 .menuitem {
@@ -70,7 +70,7 @@ nav {
 }
 
 .menuitem:hover {
-    color: orangered;
+    color: black;
 }
 
 .slider {
@@ -87,7 +87,6 @@ nav {
 .slideritem {
     width: 100vw;
     display: flex; /* Added to align items */
-    align-items: center;
     justify-content: center;
     position: relative;
 }
